@@ -24,9 +24,9 @@ function App() {
 
   const formCallback = (e) => {
     e.preventDefault();
-    const title = e.target[0].value;
-    const description = e.target[1].value;
-    const dueDate = e.target[2].value;
+    const title = e.target[1].value;
+    const description = e.target[2].value;
+    const dueDate = e.target[3].value;
     const id = uuidv4();
     const base32 = base32hex.stringify(id).slice(0, -6).toLowerCase();
 
@@ -47,16 +47,26 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App relative flex antialiased text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 w-screen h-screen">
+      <div className="min-w-12 h-screen py-6 px-3">
+        <button
+          className="p-3 dark:bg-sky-600 rounded hover:dark:bg-sky-500 active:dark:bg-sky-700"
+          onClick={() => {
+            setShowForm(true);
+          }}
+        >
+          Add Todo
+        </button>
+      </div>
       <TodoList todos={todos} onBtnClick={markDone} />
-      <button
-        onClick={() => {
-          setShowForm(true);
-        }}
-      >
-        Add Todo
-      </button>
-      {showForm && <AddForm onSubmit={formCallback} />}
+      {showForm && (
+        <AddForm
+          onSubmit={formCallback}
+          onClose={() => {
+            setShowForm(false);
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -1,9 +1,12 @@
 import React from "react";
 
-const AddForm = ({ onSubmit }) => {
+const AddForm = ({ onSubmit, onClose }) => {
   return (
-    <div>
+    <div className="absolute w-screen h-screen bg-white left-0 top-0 bg-opacity-30">
       <form onSubmit={onSubmit}>
+        <button type="button" onClick={onClose}>
+          X
+        </button>
         <label htmlFor="title">Title</label>
         <input type="text" name="title" id="title" />
         <label htmlFor="description">Description</label>
