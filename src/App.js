@@ -31,6 +31,7 @@ function App() {
     const base32 = base32hex.stringify(id).slice(0, -6).toLowerCase();
 
     addTodo({ title, description, dueDate, id, base32 });
+    setShowForm(false);
   };
 
   const markDone = (id) => {
