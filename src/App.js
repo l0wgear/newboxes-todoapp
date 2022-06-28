@@ -2,21 +2,16 @@ import "./App.css";
 import TodoList from "./components/TodoList";
 import React, { useState, useEffect } from "react";
 import AddForm from "./components/AddForm";
-import { v4 as uuidv4 } from "uuid";
-import { base32hex } from "rfc4648";
 
 function App() {
-  const id = uuidv4();
-  const base32 = base32hex.stringify(id).slice(0, -6).toLowerCase();
-  const testItem = {
-    title: "test",
-    description: "test description",
-    dueDate: "2022-07-01",
-    id,
-    base32,
-  };
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(
+    JSON.parse(localStorage.getItem("todos")) || []
+  );
   const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (todo) => {
     setTodos([...todos, todo]);
@@ -29,10 +24,6 @@ function App() {
       setTodos(updatedTodos);
     }
   };
-
-  useEffect(() => {
-    addTodo(testItem);
-  }, []);
 
   return (
     <div className="App relative flex antialiased text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 w-screen h-screen">
