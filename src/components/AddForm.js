@@ -9,7 +9,7 @@ const AddForm = ({ onSubmit }) => {
         <label htmlFor="description">Description</label>
         <input type="text" name="description" id="description" />
         <label htmlFor="due-date">Due Date</label>
-        <input type="text" name="due-date" id="due-date" />
+        <input type="date" name="due-date" id="due-date" />
         <button type="submit">Submit</button>
       </form>
     </div>
