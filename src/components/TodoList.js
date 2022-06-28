@@ -1,11 +1,11 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, onBtnClick }) => {
   return (
     <div>
       {todos.map((item) => (
-        <TodoItem item={item} key={item.id} />
+        <TodoItem item={item} key={item.id} onBtnClick={onBtnClick} />
       ))}
     </div>
   );

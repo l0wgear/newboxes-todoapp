@@ -33,13 +33,21 @@ function App() {
     addTodo({ title, description, dueDate, id, base32 });
   };
 
+  const markDone = (id) => {
+    const confirmRes = window.confirm("Mark todo as done and remove?");
+    if (confirmRes) {
+      const updatedTodos = todos.filter((item) => item.id != id);
+      setTodos(updatedTodos);
+    }
+  };
+
   useEffect(() => {
     addTodo(testItem);
   }, []);
 
   return (
     <div className="App">
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onBtnClick={markDone} />
       <button
         onClick={() => {
           setShowForm(true);
