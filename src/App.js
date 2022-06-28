@@ -26,8 +26,8 @@ function App() {
   };
 
   return (
-    <div className="App relative flex antialiased text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 w-screen h-screen">
-      <div className="min-w-12 h-screen py-6 px-3">
+    <div className="App relative flex flex-col antialiased text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 w-screen h-screen">
+      <header className="min-h-6 w-screen py-5 px-3 bg-slate-800">
         <button
           className="p-3 dark:bg-sky-600 rounded hover:dark:bg-sky-500 active:dark:bg-sky-700"
           onClick={() => {
@@ -36,7 +36,7 @@ function App() {
         >
           Add Todo
         </button>
-      </div>
+      </header>
       <TodoList todos={todos} onBtnClick={markDone} />
       {showForm && (
         <AddForm
