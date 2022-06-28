@@ -22,18 +22,6 @@ function App() {
     setTodos([...todos, todo]);
   };
 
-  const formCallback = (e) => {
-    e.preventDefault();
-    const title = e.target[1].value;
-    const description = e.target[2].value;
-    const dueDate = e.target[3].value;
-    const id = uuidv4();
-    const base32 = base32hex.stringify(id).slice(0, -6).toLowerCase();
-
-    addTodo({ title, description, dueDate, id, base32 });
-    setShowForm(false);
-  };
-
   const markDone = (id) => {
     const confirmRes = window.confirm("Mark todo as done and remove?");
     if (confirmRes) {
@@ -61,10 +49,10 @@ function App() {
       <TodoList todos={todos} onBtnClick={markDone} />
       {showForm && (
         <AddForm
-          onSubmit={formCallback}
           onClose={() => {
             setShowForm(false);
           }}
+          addTodo={addTodo}
         />
       )}
     </div>
