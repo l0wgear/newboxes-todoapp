@@ -13,7 +13,7 @@ const AddForm = ({ onSubmit, onClose, addTodo }) => {
     // const title = e.target[1].value;
     // const description = e.target[2].value;
     // const dueDate = e.target[3].value;
-    if (title && description) {
+    if (title) {
       const id = uuidv4();
       const base32 = base32hex.stringify(id).slice(0, -6).toLowerCase();
 
@@ -56,9 +56,7 @@ const AddForm = ({ onSubmit, onClose, addTodo }) => {
           type="text"
           name="description"
           id="description"
-          className={`text-slate-700 p-1 rounded border-2 ${
-            afterSubmit && !description && "border-rose-500"
-          }`}
+          className={`text-slate-700 p-1 rounded border-2`}
           onChange={(e) => {
             setDescription(e.target.value);
           }}
