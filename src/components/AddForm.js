@@ -26,18 +26,21 @@ const AddForm = ({ onSubmit, onClose, addTodo }) => {
   };
 
   return (
-    <div className="absolute w-screen h-screen bg-slate-500 dark:bg-slate-200 left-0 top-0 bg-opacity-30 flex justify-center justify-items-stretch items-center">
+    <div className="absolute w-screen h-screen bg-slate-500 dark:bg-slate-200 left-0 top-0 bg-opacity-30 dark:bg-opacity-30 flex justify-center justify-items-stretch items-center">
       <form
         onSubmit={formCallback}
         className="flex flex-col bg-slate-100 dark:bg-slate-700 p-6 rounded-xl gap-3 w-[400px]"
       >
-        <button
-          type="button"
-          onClick={onClose}
-          className="w-8 h-8 self-end bg-sky-600 rounded font-bold text-slate-200"
-        >
-          X
-        </button>
+        <div className="flex justify-between items-center">
+          <h2 className="font-bold text-2xl">Add todo</h2>
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-8 h-8 self-end bg-sky-600 rounded font-bold text-slate-200"
+          >
+            X
+          </button>
+        </div>
         <label htmlFor="title">Title</label>
         <input
           type="text"

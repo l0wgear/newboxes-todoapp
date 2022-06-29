@@ -7,7 +7,7 @@ const TodoItem = ({ item, onBtnClick }) => {
   const today = new Date();
   const overdue = dueDateObject - today < 0;
   return (
-    <div className="rounded-lg p-4 bg-slate-300 dark:bg-slate-800 flex flex-col gap-3 h-fit w-fit">
+    <div className="rounded-lg p-4 bg-slate-300 dark:bg-slate-800 flex flex-col justify-between gap-3 h-fit w-fit min-w-[10rem] min-h-[11.2rem]">
       <h1 className="font-bold text-2xl capitalize">{title}</h1>
       {dueDate !== "" && (
         <span className="due-date flex items-baseline">
