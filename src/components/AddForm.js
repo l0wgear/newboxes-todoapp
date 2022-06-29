@@ -26,15 +26,15 @@ const AddForm = ({ onSubmit, onClose, addTodo }) => {
   };
 
   return (
-    <div className="absolute w-screen h-screen bg-slate-200 left-0 top-0 bg-opacity-30 flex justify-center justify-items-stretch items-center">
+    <div className="absolute w-screen h-screen bg-slate-500 dark:bg-slate-200 left-0 top-0 bg-opacity-30 flex justify-center justify-items-stretch items-center">
       <form
         onSubmit={formCallback}
-        className="flex flex-col dark:bg-slate-700 p-6 rounded-xl gap-3 w-[400px]"
+        className="flex flex-col bg-slate-100 dark:bg-slate-700 p-6 rounded-xl gap-3 w-[400px]"
       >
         <button
           type="button"
           onClick={onClose}
-          className="w-8 h-8 self-end bg-sky-600 rounded font-bold"
+          className="w-8 h-8 self-end bg-sky-600 rounded font-bold text-slate-200"
         >
           X
         </button>
@@ -75,7 +75,7 @@ const AddForm = ({ onSubmit, onClose, addTodo }) => {
         />
         <button
           type="submit"
-          className="p-1 dark:bg-sky-600 rounded hover:dark:bg-sky-500 active:dark:bg-sky-700"
+          className="p-1 bg-sky-600 rounded hover:bg-sky-500 active:bg-sky-700 text-slate-200"
         >
           Submit
         </button>

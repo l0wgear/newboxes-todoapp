@@ -29,10 +29,10 @@ function App() {
 
   return (
     <GoogleOAuthProvider clientId="<your_client_id>">
-      <div className="App relative flex flex-col antialiased text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 w-screen h-screen">
+      <div className="App relative flex flex-col antialiased text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-900 w-screen h-screen">
         <header className="min-h-6 w-screen py-5 px-3 bg-slate-800 flex items-center justify-end gap-4">
           <button
-            className="h-[40px] px-3 dark:bg-sky-600 rounded hover:dark:bg-sky-500 active:dark:bg-sky-700"
+            className="h-[40px] px-3 bg-sky-600 rounded hover:bg-sky-500 active:bg-sky-700 text-slate-200"
             onClick={() => {
               setShowForm(true);
             }}
