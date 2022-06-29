@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/newboxes-todoapp/static/css/main.1817c97c.css",
+    "main.js": "/newboxes-todoapp/static/js/main.03b21b7e.js",
+    "index.html": "/newboxes-todoapp/index.html",
+    "main.1817c97c.css.map": "/newboxes-todoapp/static/css/main.1817c97c.css.map",
+    "main.03b21b7e.js.map": "/newboxes-todoapp/static/js/main.03b21b7e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1817c97c.css",
+    "static/js/main.03b21b7e.js"
+  ]
+}
