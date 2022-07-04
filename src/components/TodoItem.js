@@ -1,7 +1,7 @@
 import React from "react";
 import Overdue from "./Overdue";
 
-const TodoItem = ({ item, onBtnClick }) => {
+const TodoItem = ({ item, onRemoveClick, onEditClick }) => {
   const { title, description, dueDate, id, priority, status } = item;
   const dueDateObject = new Date(dueDate);
   const today = new Date();
@@ -39,12 +39,17 @@ const TodoItem = ({ item, onBtnClick }) => {
         <button
           className="p-1 bg-rose-700 justify-self-end rounded hover:bg-rose-600 active:bg-rose-800 text-slate-200 w-full"
           onClick={() => {
-            onBtnClick(id);
+            onRemoveClick(id);
           }}
         >
           remove
         </button>
-        <button className="p-1 bg-sky-600 justify-self-end rounded hover:bg-sky-500 active:bg-sky-700 text-slate-200 w-full">
+        <button
+          className="p-1 bg-sky-600 justify-self-end rounded hover:bg-sky-500 active:bg-sky-700 text-slate-200 w-full"
+          onClick={() => {
+            onEditClick(id);
+          }}
+        >
           edit
         </button>
       </div>

@@ -10,6 +10,7 @@ function App() {
     JSON.parse(localStorage.getItem("todos")) || {}
   );
   const [showForm, setShowForm] = useState(false);
+  const [toEdit, setToEdit] = useState(undefined);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -29,6 +30,16 @@ function App() {
         return updatedTodos;
       });
     }
+  };
+
+  const editTodo = (todoId) => {
+    setToEdit(todos[todoId]);
+    setShowForm(true);
+  };
+
+  const formClose = () => {
+    setToEdit(undefined);
+    setShowForm(false);
   };
 
   return (
@@ -52,14 +63,13 @@ function App() {
             }}
           />
         </header>
-        <TodoList todos={todos} onBtnClick={removeTodo} />
+        <TodoList
+          todos={todos}
+          onRemoveClick={removeTodo}
+          onEditClick={editTodo}
+        />
         {showForm && (
-          <AddForm
-            onClose={() => {
-              setShowForm(false);
-            }}
-            addTodo={addTodo}
-          />
+          <AddForm onClose={formClose} addTodo={addTodo} todo={toEdit} />
         )}
       </div>
     </GoogleOAuthProvider>
