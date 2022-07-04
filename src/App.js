@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+  }, [todos, showForm]);
 
   const addTodo = (todo) => {
     const newTodos = todos;
