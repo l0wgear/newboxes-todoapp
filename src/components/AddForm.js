@@ -6,6 +6,8 @@ const AddForm = ({ onSubmit, onClose, addTodo }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [priority, setPriority] = useState("high");
+  const [status, setStatus] = useState("planned");
   const [afterSubmit, setAfterSubmit] = useState(false);
 
   const formCallback = (e) => {
@@ -17,7 +19,7 @@ const AddForm = ({ onSubmit, onClose, addTodo }) => {
       const id = uuidv4();
       const base32 = base32hex.stringify(id).slice(0, -6).toLowerCase();
 
-      addTodo({ title, description, dueDate, id, base32 });
+      addTodo({ title, description, priority, status, dueDate, id, base32 });
       onClose();
       //   setShowForm(false);
     } else {
@@ -65,6 +67,32 @@ const AddForm = ({ onSubmit, onClose, addTodo }) => {
           }}
           value={description}
         />
+        <label htmlFor="priority">Priority</label>
+        <select
+          name="priority"
+          id="priority"
+          onChange={(e) => {
+            setPriority(e.target.value);
+          }}
+          className="text-slate-700 p-1 rounded border-2"
+        >
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <label htmlFor="status">Status</label>
+        <select
+          name="status"
+          id="status"
+          onChange={(e) => {
+            setStatus(e.target.value);
+          }}
+          className="text-slate-700 p-1 rounded border-2"
+        >
+          <option value="planned">Planned</option>
+          <option value="in progress">In Progress</option>
+          <option value="done">Done</option>
+        </select>
         <label htmlFor="due-date">Due Date</label>
         <input
           type="date"
