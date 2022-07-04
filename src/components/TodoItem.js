@@ -6,21 +6,7 @@ const TodoItem = ({ item, onBtnClick }) => {
   const dueDateObject = new Date(dueDate);
   const today = new Date();
   const overdue = dueDateObject - today < 0;
-  let bgPriority = "";
-  // switch (priority) {
-  //   case "high":
-  //     bgPriority = "bg-rose-500";
-  //     break;
-  //   case "medium":
-  //     bgPriority = "bg-yellow-500";
-  //     break;
-  //   case "low":
-  //     bgPriority = "bg-green-500";
-  //     break;
-  //   default:
-  //     bgPriority = "";
-  //     break;
-  // }
+
   return (
     <div className="rounded-lg p-4 bg-slate-300 dark:bg-slate-800 flex flex-col justify-between gap-3 h-fit w-fit min-w-[10rem] max-w-[15rem] min-h-[11.2rem]">
       <h1 className="font-bold text-2xl capitalize">{title}</h1>

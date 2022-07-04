@@ -7,7 +7,7 @@ import { GoogleLogin } from "@react-oauth/google";
 
 function App() {
   const [todos, setTodos] = useState(
-    JSON.parse(localStorage.getItem("todos")) || []
+    JSON.parse(localStorage.getItem("todos")) || {}
   );
   const [showForm, setShowForm] = useState(false);
 
@@ -16,14 +16,18 @@ function App() {
   }, [todos]);
 
   const addTodo = (todo) => {
-    setTodos([...todos, todo]);
+    const newTodos = todos;
+    newTodos[todo.id] = todo;
+    setTodos(newTodos);
   };
 
-  const markDone = (id) => {
+  const removeTodo = (id) => {
     const confirmRes = window.confirm("Mark todo as done and remove?");
     if (confirmRes) {
-      const updatedTodos = todos.filter((item) => item.id !== id);
-      setTodos(updatedTodos);
+      setTodos((todos) => {
+        let { [id]: _, ...updatedTodos } = todos;
+        return updatedTodos;
+      });
     }
   };
 
@@ -48,7 +52,7 @@ function App() {
             }}
           />
         </header>
-        <TodoList todos={todos} onBtnClick={markDone} />
+        <TodoList todos={todos} onBtnClick={removeTodo} />
         {showForm && (
           <AddForm
             onClose={() => {
