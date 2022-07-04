@@ -7,24 +7,39 @@ import { GoogleLogin } from "@react-oauth/google";
 
 function App() {
   const [todos, setTodos] = useState(
-    JSON.parse(localStorage.getItem("todos")) || []
+    JSON.parse(localStorage.getItem("todos")) || {}
   );
   const [showForm, setShowForm] = useState(false);
+  const [toEdit, setToEdit] = useState(undefined);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+  }, [todos, showForm]);
 
   const addTodo = (todo) => {
-    setTodos([...todos, todo]);
+    const newTodos = todos;
+    newTodos[todo.id] = todo;
+    setTodos(newTodos);
   };
 
-  const markDone = (id) => {
+  const removeTodo = (id) => {
     const confirmRes = window.confirm("Mark todo as done and remove?");
     if (confirmRes) {
-      const updatedTodos = todos.filter((item) => item.id !== id);
-      setTodos(updatedTodos);
+      setTodos((todos) => {
+        let { [id]: _, ...updatedTodos } = todos;
+        return updatedTodos;
+      });
     }
+  };
+
+  const editTodo = (todoId) => {
+    setToEdit(todos[todoId]);
+    setShowForm(true);
+  };
+
+  const formClose = () => {
+    setToEdit(undefined);
+    setShowForm(false);
   };
 
   return (
@@ -48,14 +63,13 @@ function App() {
             }}
           />
         </header>
-        <TodoList todos={todos} onBtnClick={markDone} />
+        <TodoList
+          todos={todos}
+          onRemoveClick={removeTodo}
+          onEditClick={editTodo}
+        />
         {showForm && (
-          <AddForm
-            onClose={() => {
-              setShowForm(false);
-            }}
-            addTodo={addTodo}
-          />
+          <AddForm onClose={formClose} addTodo={addTodo} todo={toEdit} />
         )}
       </div>
     </GoogleOAuthProvider>

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { base32hex } from "rfc4648";
 
-const AddForm = ({ onSubmit, onClose, addTodo }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  const [priority, setPriority] = useState("high");
-  const [status, setStatus] = useState("planned");
+const AddForm = ({ onSubmit, onClose, addTodo, todo }) => {
+  const [title, setTitle] = useState(todo ? todo.title : "");
+  const [description, setDescription] = useState(todo ? todo.description : "");
+  const [dueDate, setDueDate] = useState(todo ? todo.dueDate : "");
+  const [priority, setPriority] = useState(todo ? todo.priority : "high");
+  const [status, setStatus] = useState(todo ? todo.status : "planned");
   const [afterSubmit, setAfterSubmit] = useState(false);
 
   const formCallback = (e) => {
@@ -16,10 +16,15 @@ const AddForm = ({ onSubmit, onClose, addTodo }) => {
     // const description = e.target[2].value;
     // const dueDate = e.target[3].value;
     if (title) {
-      const id = uuidv4();
-      const base32 = base32hex.stringify(id).slice(0, -6).toLowerCase();
+      if (todo) {
+        const { id, base32 } = todo;
+        addTodo({ title, description, priority, status, dueDate, id, base32 });
+      } else {
+        const id = uuidv4();
+        const base32 = base32hex.stringify(id).slice(0, -6).toLowerCase();
 
-      addTodo({ title, description, priority, status, dueDate, id, base32 });
+        addTodo({ title, description, priority, status, dueDate, id, base32 });
+      }
       onClose();
       //   setShowForm(false);
     } else {
