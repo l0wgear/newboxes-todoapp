@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import GoogleLogo from "../assets/g-logo.png";
 
@@ -6,6 +6,7 @@ const axios = require("axios");
 
 const GoogleLogin = ({ setCredential }) => {
   const [user, setUser] = useState(undefined);
+  const [timeoutSec, setTimeoutSec] = useState(undefined);
   const googleLogin = useGoogleLogin({
     // scope: ["https://www.googleapis.com/auth/calendar.events.readonly"],
     onSuccess: async (tokenResponse) => {
@@ -16,10 +17,22 @@ const GoogleLogin = ({ setCredential }) => {
         { headers: { Authorization: `Bearer ${tokenResponse.access_token}` } }
       );
       setUser(userInfo.data);
+      setTimeoutSec(tokenResponse.expires_in);
       console.log(userInfo);
     },
     onError: (errorResponse) => console.log(errorResponse),
   });
+
+  useEffect(() => {
+    if (user && timeoutSec) {
+      setTimeout(() => {
+        setUser(undefined);
+        setCredential(undefined);
+        setTimeoutSec(undefined);
+      }, (timeoutSec - 60) * 1000);
+    }
+  }, [user, timeoutSec, setCredential]);
+
   return !user ? (
     <button
       onClick={googleLogin}
