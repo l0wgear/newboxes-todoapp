@@ -3,9 +3,6 @@ import TodoList from "./components/TodoList";
 import React, { useState, useEffect } from "react";
 import AddForm from "./components/AddForm";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-// import { GoogleLogin } from "@react-oauth/google";
-// import { useGoogleLogin } from "@react-oauth/google";
-import { axios } from "axios";
 import GoogleLogin from "./components/GoogleLogin";
 
 function App() {
@@ -14,6 +11,7 @@ function App() {
   );
   const [showForm, setShowForm] = useState(false);
   const [toEdit, setToEdit] = useState(undefined);
+  const [credential, setCredential] = useState(undefined);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -59,7 +57,7 @@ function App() {
           >
             Add Todo
           </button>
-          <GoogleLogin />
+          <GoogleLogin setCredential={setCredential} />
         </header>
         <TodoList
           todos={todos}
