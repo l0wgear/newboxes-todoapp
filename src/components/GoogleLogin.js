@@ -42,7 +42,7 @@ const GoogleLogin = ({ setCredential }) => {
       Sign in with Google
     </button>
   ) : (
-    <div className="flex items-center justify-center gap-2 h-[40px]">
+    <div className="flex items-center justify-center gap-2 h-[40px] text-slate-200">
       <img
         src={user.picture}
         alt="user"
