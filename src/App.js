@@ -3,7 +3,10 @@ import TodoList from "./components/TodoList";
 import React, { useState, useEffect } from "react";
 import AddForm from "./components/AddForm";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { GoogleLogin } from "@react-oauth/google";
+// import { GoogleLogin } from "@react-oauth/google";
+// import { useGoogleLogin } from "@react-oauth/google";
+import { axios } from "axios";
+import GoogleLogin from "./components/GoogleLogin";
 
 function App() {
   const [todos, setTodos] = useState(
@@ -42,8 +45,10 @@ function App() {
     setShowForm(false);
   };
 
+  const clientID = process.env.REACT_APP_CLIENT_ID;
+
   return (
-    <GoogleOAuthProvider clientId="<your_client_id>">
+    <GoogleOAuthProvider clientId={clientID}>
       <div className="App relative flex flex-col antialiased text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-slate-900 w-screen h-screen">
         <header className="min-h-6 w-screen py-5 px-3 bg-slate-800 flex items-center justify-end gap-4">
           <button
@@ -54,14 +59,7 @@ function App() {
           >
             Add Todo
           </button>
-          <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              console.log(credentialResponse);
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-          />
+          <GoogleLogin />
         </header>
         <TodoList
           todos={todos}
