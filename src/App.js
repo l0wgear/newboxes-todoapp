@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import AddForm from "./components/AddForm";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import GoogleLogin from "./components/GoogleLogin";
+const axios = require("axios");
 
 function App() {
   const [todos, setTodos] = useState(
@@ -23,13 +24,25 @@ function App() {
     setTodos(newTodos);
   };
 
+  const removeFromGoogleCalendar = async (id) => {
+    const response = await axios.delete(
+      `https://www.googleapis.com/calendar/v3/calendars/primary/events/${id}`,
+      { headers: { Authorization: `Bearer ${credential}` } }
+    );
+    console.log(response);
+  };
+
   const removeTodo = (id) => {
     const confirmRes = window.confirm("Mark todo as done and remove?");
     if (confirmRes) {
+      const toRemove = todos[id];
       setTodos((todos) => {
-        let { [id]: _, ...updatedTodos } = todos;
+        let { [id]: removed, ...updatedTodos } = todos;
         return updatedTodos;
       });
+      if (credential && toRemove.dueDate) {
+        removeFromGoogleCalendar(toRemove.base32);
+      }
     }
   };
 
