@@ -80,6 +80,7 @@ const AddForm = ({ onSubmit, onClose, addTodo, todo }) => {
             setPriority(e.target.value);
           }}
           className="text-slate-700 p-1 rounded border-2"
+          value={priority}
         >
           <option value="high">High</option>
           <option value="medium">Medium</option>
@@ -93,6 +94,7 @@ const AddForm = ({ onSubmit, onClose, addTodo, todo }) => {
             setStatus(e.target.value);
           }}
           className="text-slate-700 p-1 rounded border-2"
+          value={status}
         >
           <option value="planned">Planned</option>
           <option value="in progress">In Progress</option>
