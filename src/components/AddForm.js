@@ -50,7 +50,7 @@ const AddForm = ({ onClose, addTodo, todo, credential }) => {
           base32,
         };
 
-        if (credential) {
+        if (credential && newTodo.dueDate) {
           addToGoogleCalender(newTodo);
         }
 
