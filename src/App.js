@@ -25,11 +25,10 @@ function App() {
   };
 
   const removeFromGoogleCalendar = async (id) => {
-    const response = await axios.delete(
+    await axios.delete(
       `https://www.googleapis.com/calendar/v3/calendars/primary/events/${id}`,
-      { headers: { Authorization: `Bearer ${credential}` } }
+      { headers: { Authorization: `Bearer ${credential.access_token}` } }
     );
-    console.log(response);
   };
 
   const removeTodo = (id) => {

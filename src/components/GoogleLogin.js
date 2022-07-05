@@ -8,9 +8,8 @@ const GoogleLogin = ({ setCredential }) => {
   const [user, setUser] = useState(undefined);
   const [timeoutSec, setTimeoutSec] = useState(undefined);
   const googleLogin = useGoogleLogin({
-    // scope: ["https://www.googleapis.com/auth/calendar.events.readonly"],
+    scope: ["https://www.googleapis.com/auth/calendar.events"],
     onSuccess: async (tokenResponse) => {
-      console.log(tokenResponse);
       setCredential(tokenResponse);
       const userInfo = await axios.get(
         "https://www.googleapis.com/oauth2/v3/userinfo",
@@ -18,7 +17,6 @@ const GoogleLogin = ({ setCredential }) => {
       );
       setUser(userInfo.data);
       setTimeoutSec(tokenResponse.expires_in);
-      console.log(userInfo);
     },
     onError: (errorResponse) => console.log(errorResponse),
   });

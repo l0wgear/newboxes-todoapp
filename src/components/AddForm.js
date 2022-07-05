@@ -23,7 +23,7 @@ const AddForm = ({ onClose, addTodo, todo, credential }) => {
     await axios.post(
       "https://www.googleapis.com/calendar/v3/calendars/primary/events",
       parameters,
-      { headers: { Authorization: `Bearer ${credential}` } }
+      { headers: { Authorization: `Bearer ${credential.access_token}` } }
     );
   };
 
