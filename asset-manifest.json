@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/newboxes-todoapp/static/css/main.72139768.css",
-    "main.js": "/newboxes-todoapp/static/js/main.e246d11a.js",
+    "main.js": "/newboxes-todoapp/static/js/main.a19492b4.js",
     "index.html": "/newboxes-todoapp/index.html",
     "main.72139768.css.map": "/newboxes-todoapp/static/css/main.72139768.css.map",
-    "main.e246d11a.js.map": "/newboxes-todoapp/static/js/main.e246d11a.js.map"
+    "main.a19492b4.js.map": "/newboxes-todoapp/static/js/main.a19492b4.js.map"
   },
   "entrypoints": [
     "static/css/main.72139768.css",
-    "static/js/main.e246d11a.js"
+    "static/js/main.a19492b4.js"
   ]
 }
