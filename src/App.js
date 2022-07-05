@@ -65,7 +65,12 @@ function App() {
           onEditClick={editTodo}
         />
         {showForm && (
-          <AddForm onClose={formClose} addTodo={addTodo} todo={toEdit} />
+          <AddForm
+            onClose={formClose}
+            addTodo={addTodo}
+            todo={toEdit}
+            credential={credential}
+          />
         )}
       </div>
     </GoogleOAuthProvider>
