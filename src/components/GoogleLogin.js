@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin, hasGrantedAllScopesGoogle } from "@react-oauth/google";
 import GoogleLogo from "../assets/g-logo.png";
 
 const axios = require("axios");
 
-const GoogleLogin = ({ setCredential }) => {
+const GoogleLogin = ({ setCredential, setHasAccess }) => {
   const [user, setUser] = useState(undefined);
   const [timeoutSec, setTimeoutSec] = useState(undefined);
   const googleLogin = useGoogleLogin({
@@ -14,6 +14,12 @@ const GoogleLogin = ({ setCredential }) => {
       const userInfo = await axios.get(
         "https://www.googleapis.com/oauth2/v3/userinfo",
         { headers: { Authorization: `Bearer ${tokenResponse.access_token}` } }
+      );
+      setHasAccess(
+        hasGrantedAllScopesGoogle(
+          tokenResponse,
+          "https://www.googleapis.com/auth/calendar.events"
+        )
       );
       setUser(userInfo.data);
       setTimeoutSec(tokenResponse.expires_in);

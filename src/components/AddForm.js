@@ -4,7 +4,7 @@ import { base32hex } from "rfc4648";
 
 const axios = require("axios");
 
-const AddForm = ({ onClose, addTodo, todo, credential }) => {
+const AddForm = ({ onClose, addTodo, todo, credential, hasAccess }) => {
   const [title, setTitle] = useState(todo ? todo.title : "");
   const [description, setDescription] = useState(todo ? todo.description : "");
   const [dueDate, setDueDate] = useState(todo ? todo.dueDate : "");
@@ -50,7 +50,7 @@ const AddForm = ({ onClose, addTodo, todo, credential }) => {
           base32,
         };
 
-        if (credential && newTodo.dueDate) {
+        if (hasAccess && credential && newTodo.dueDate) {
           addToGoogleCalender(newTodo);
         }
 

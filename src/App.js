@@ -13,6 +13,7 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [toEdit, setToEdit] = useState(undefined);
   const [credential, setCredential] = useState(undefined);
+  const [hasAccess, setHasAccess] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -39,7 +40,7 @@ function App() {
         let { [id]: removed, ...updatedTodos } = todos;
         return updatedTodos;
       });
-      if (credential && toRemove.dueDate) {
+      if (hasAccess && credential && toRemove.dueDate) {
         removeFromGoogleCalendar(toRemove.base32);
       }
     }
@@ -69,7 +70,10 @@ function App() {
           >
             Add Todo
           </button>
-          <GoogleLogin setCredential={setCredential} />
+          <GoogleLogin
+            setCredential={setCredential}
+            setHasAccess={setHasAccess}
+          />
         </header>
         <TodoList
           todos={todos}
@@ -82,6 +86,7 @@ function App() {
             addTodo={addTodo}
             todo={toEdit}
             credential={credential}
+            hasAccess={hasAccess}
           />
         )}
       </div>
