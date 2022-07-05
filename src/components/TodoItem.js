@@ -22,7 +22,7 @@ const TodoItem = ({ item, onRemoveClick, onEditClick }) => {
           {overdue && <Overdue />}
         </span>
       )}
-      <p className="flex-1">{description}</p>
+      <p className="flex-1 my-1">{description}</p>
 
       <div className="grid grid-rows-1 grid-cols-2 gap-1">
         <button
