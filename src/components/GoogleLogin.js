@@ -33,7 +33,7 @@ const GoogleLogin = ({ setCredential }) => {
       <img
         src={user.picture}
         alt="user"
-        referrerpolicy="no-referrer"
+        referrerPolicy="no-referrer"
         className="w-10 rounded-full"
       />
       <div className="flex flex-col">
