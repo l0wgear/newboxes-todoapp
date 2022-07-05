@@ -29,9 +29,6 @@ const AddForm = ({ onClose, addTodo, todo, credential, hasAccess }) => {
 
   const formCallback = (e) => {
     e.preventDefault();
-    // const title = e.target[1].value;
-    // const description = e.target[2].value;
-    // const dueDate = e.target[3].value;
     if (title) {
       if (todo) {
         const { id, base32 } = todo;
@@ -57,7 +54,6 @@ const AddForm = ({ onClose, addTodo, todo, credential, hasAccess }) => {
         addTodo(newTodo);
       }
       onClose();
-      //   setShowForm(false);
     } else {
       setAfterSubmit(true);
     }
